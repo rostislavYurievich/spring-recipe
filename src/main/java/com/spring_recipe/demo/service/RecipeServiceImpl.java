@@ -19,7 +19,6 @@ import java.util.UUID;
 import static com.spring_recipe.demo.util.RecipeMappingUtil.mapToRecipeDto;
 import static com.spring_recipe.demo.util.RecipeMappingUtil.mapToRecipeFromRequest;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class RecipeServiceImpl implements RecipeService {

@@ -23,7 +23,7 @@ public class Recipe {
     private String name;
 
     @Column
-    private UUID userId;
+    private int userId;
 
     @Column
     private String description;

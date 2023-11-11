@@ -7,9 +7,15 @@ import com.spring_recipe.demo.domain.exceptions.RecipeAlreadyExistException;
 import com.spring_recipe.demo.domain.exceptions.RecipeNotFoundException;
 import com.spring_recipe.demo.service.interfaces.RecipeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+
 
 import java.util.List;
 
@@ -17,6 +23,7 @@ import static java.lang.String.format;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class RecipeController {
 
     private final RecipeService RecipeService;
@@ -37,6 +44,7 @@ public class RecipeController {
     @PreAuthorize("hasAuthority('modification')")
     public ResponseEntity<RecipeDto> createRecipe(@RequestBody CreateRecipeRequest Recipe) throws RecipeAlreadyExistException {
         return ResponseEntity.ok(RecipeService.createRecipe(Recipe));
+        
     }
 
     @PatchMapping("/Recipes")
@@ -48,6 +56,12 @@ public class RecipeController {
     @DeleteMapping("/Recipes")
     @PreAuthorize("hasAuthority('modification')")
     public ResponseEntity deleteRecipe(@RequestBody String RecipeId) {
+        /*
+         * {
+                "RecipeId": "59825e35-6a82-4efa-b156-c27ba38e29ca"
+            }
+            Как выдернуть значение?
+         */
         RecipeService.deleteRecipe(RecipeId);
         return ResponseEntity.ok()
                 .body(format("Recipe with id= %s deleted", RecipeId));

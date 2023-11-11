@@ -18,7 +18,7 @@ public class ApplicationUser {
 
     @Id
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     private String name;
 
