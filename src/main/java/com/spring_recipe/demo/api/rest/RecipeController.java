@@ -1,5 +1,6 @@
 package com.spring_recipe.demo.api.rest;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.spring_recipe.demo.domain.dto.CreateRecipeRequest;
 import com.spring_recipe.demo.domain.entity.Recipe;
 import com.spring_recipe.demo.domain.dto.RecipeDto;
@@ -53,17 +54,12 @@ public class RecipeController {
         return ResponseEntity.ok(RecipeService.updateRecipe(Recipe));
     }
 
-    @DeleteMapping("/Recipes")
+    @DeleteMapping("/Recipes/{id}")
     @PreAuthorize("hasAuthority('modification')")
-    public ResponseEntity deleteRecipe(@RequestBody String RecipeId) {
-        /*
-         * {
-                "RecipeId": "59825e35-6a82-4efa-b156-c27ba38e29ca"
-            }
-            Как выдернуть значение?
-         */
-        RecipeService.deleteRecipe(RecipeId);
+    @JsonDeserialize
+    public ResponseEntity deleteRecipe(@PathVariable String id) {
+        RecipeService.deleteRecipe(id);
         return ResponseEntity.ok()
-                .body(format("Recipe with id= %s deleted", RecipeId));
+                .body(format("Recipe with id= %s deleted", id));
     }
 }
