@@ -3,6 +3,7 @@ package com.spring_recipe.demo.domain.dto;
 import com.spring_recipe.demo.domain.entity.ApplicationUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -10,7 +10,6 @@ import com.spring_recipe.demo.service.interfaces.RecipeService;
 import com.spring_recipe.demo.util.RecipeMappingUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,8 +40,6 @@ public class RecipeServiceImpl implements RecipeService {
         }
         throw new RecipeAlreadyExistException(request.getName());
     }
-
-
 
     @Override
     public List<Recipe> getAllRecipes() {

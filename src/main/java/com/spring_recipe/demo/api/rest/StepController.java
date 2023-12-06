@@ -8,14 +8,12 @@ import com.spring_recipe.demo.domain.exceptions.RecipeNotFoundException;
 import com.spring_recipe.demo.service.interfaces.StepService;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import static java.lang.String.format;
 
-@AutoConfiguration
 @RestController
 @RequiredArgsConstructor
 public class StepController {

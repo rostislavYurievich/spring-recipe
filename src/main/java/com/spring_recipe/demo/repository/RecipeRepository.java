@@ -14,5 +14,5 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
     List<Recipe> getAll();
     Optional<Recipe> findByName(String name);
 
-    Boolean existsByName(String name);
+    boolean existsByName(String name);
 }

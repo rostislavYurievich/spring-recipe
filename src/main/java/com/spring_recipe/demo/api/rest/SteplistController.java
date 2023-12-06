@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import static java.lang.String.format;
 
-@AutoConfiguration
 @RestController
 @RequiredArgsConstructor
 public class SteplistController {
