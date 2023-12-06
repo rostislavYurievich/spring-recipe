@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateRecipeRequest {
     private String name;
-    private UUID userId;
+    private int userId;
     private String description;
     private String image;
     private UUID listId;

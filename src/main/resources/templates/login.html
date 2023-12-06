@@ -4,14 +4,14 @@
     <title>Please Log In</title>
 </head>
 <body>
-<h1>Please Log In</h1>
+<h1>Please Log In</h1>чет я 
 <div th:if="${param.error}">
     Invalid username and password.</div>
 <div th:if="${param.logout}">
     You have been logged out.</div>
 <form th:action="@{/auth/login}" method="post">
     <div>
-        <input type="text" name="username" placeholder="Username"/>
+        <input type="text" name="username" placeholder="E-Mail"/>
     </div>
     <div>
         <input type="password" name="password" placeholder="Password"/>

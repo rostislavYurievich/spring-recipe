@@ -41,11 +41,11 @@ public class SteplistController {
         return ResponseEntity.ok(steplistService.updateSteplist(Steplist));
     }
 
-    @DeleteMapping("/Steplists")
+    @DeleteMapping("/Steplists/{id}")
     @PreAuthorize("hasAuthority('modification')")
-    public ResponseEntity deleteStep(@RequestBody String StepId) {
-        steplistService.deleteSteplist(StepId);
+    public ResponseEntity deleteStep(@PathVariable String id) {
+        steplistService.deleteSteplist(id);
         return ResponseEntity.ok()
-                .body(format("Step with id= %s deleted", StepId));
+                .body(format("Step with id= %s deleted", id));
     }
 }
