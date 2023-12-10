@@ -16,7 +16,7 @@ public class RecipeMappingUtil {
                 .description(recipe.getDescription())
                 .image(recipe.getImage())
                 .userId(recipe.getUserId())
-                .listId(recipe.getListId())
+                .stepId(recipe.getStepId())
                 .requestTime(LocalDateTime.now())
                 .build();
     }
@@ -27,7 +27,7 @@ public class RecipeMappingUtil {
                 .description(request.getDescription())
                 .image(request.getImage())
                 .userId(request.getUserId())
-                .listId(request.getListId())
+                .stepId(request.getStepId())
                 .build();
     }
 }

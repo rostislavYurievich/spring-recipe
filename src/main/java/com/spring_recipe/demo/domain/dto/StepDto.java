@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class StepDto {
     private String description;
-    private UUID dependencyRecipeId;
-    private String image;
+    private UUID recipeId;
+    private UUID nextId;
     private LocalDateTime requestTime;
 }

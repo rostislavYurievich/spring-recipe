@@ -14,11 +14,13 @@ import org.springframework.stereotype.Service;
 public interface RecipeService {
     RecipeDto getRecipeByName(String name) throws RecipeNotFoundException;
 
+    RecipeDto getRecipeById(String id) throws RecipeNotFoundException;
+
     RecipeDto createRecipe(CreateRecipeRequest Recipe) throws RecipeAlreadyExistException;
 
     List<Recipe> getAllRecipes();
 
     RecipeDto updateRecipe(Recipe Recipe);
 
-    void deleteRecipe(String RecipeId);
+    void deleteRecipe(String id);
 }

@@ -37,14 +37,13 @@ public class SecurityConfig {
         // Use only the handle() method of XorCsrfTokenRequestAttributeHandler and the
         // default implementation of resolveCsrfTokenValue() from CsrfTokenRequestHandler
         CsrfTokenRequestHandler requestHandler = delegate::handle;
-        http
-                /*.csrf((csrf) -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))*/ //https://www.baeldung.com/postman-send-csrf-token
-                .csrf().disable()
-                .authorizeHttpRequests((authz) -> authz
+        http.
+                
+                csrf().disable()
+                /*authorizeHttpRequests((authz) -> authz
                         .anyRequest().authenticated()
-                ).httpBasic();
-                /*/.formLogin(form -> form
+                )/* */.httpBasic();
+                /*.formLogin(form -> form
                         .loginPage("/auth/login").permitAll()
                         .defaultSuccessUrl("/auth/success", true))
                 .logout(form -> form

@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "users")
 @Data
@@ -29,4 +27,8 @@ public class ApplicationUser {
     @Enumerated(value = EnumType.STRING)
     @Column(name ="role")
     private ApplicationUserRole role;
+
+    public void setId(int id){
+        this.id = id;
+    }
 }

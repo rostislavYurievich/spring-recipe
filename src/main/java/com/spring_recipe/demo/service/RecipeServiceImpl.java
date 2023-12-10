@@ -33,6 +33,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public RecipeDto getRecipeById(String id) throws RecipeNotFoundException {
+        return recipeRepository.findById(UUID.fromString(id)).stream()
+                .map(RecipeMappingUtil::mapToRecipeDto)
+                .findFirst()
+                .orElseThrow(() -> new RecipeNotFoundException(id));
+    }
+
+    @Override
     @Transactional
     public RecipeDto createRecipe(CreateRecipeRequest request) throws RecipeAlreadyExistException {
         if (!recipeRepository.existsByName(request.getName())) {
@@ -53,7 +61,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override   
-    public void deleteRecipe(String recipeId) {
-        recipeRepository.deleteById(UUID.fromString(recipeId));
+    public void deleteRecipe(String id) {
+        recipeRepository.deleteById(UUID.fromString(id));
     }
 }

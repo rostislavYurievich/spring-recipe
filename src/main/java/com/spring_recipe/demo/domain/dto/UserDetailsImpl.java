@@ -13,7 +13,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
-
+    
+    private final int id;
     private final String username;
     private final String password;
     private final List<SimpleGrantedAuthority> authorities;
@@ -49,4 +50,5 @@ public class UserDetailsImpl implements UserDetails {
                 true,
                 user.getRole().grantedAuthority());
     }
+
 }
