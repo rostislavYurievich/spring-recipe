@@ -32,5 +32,8 @@ public class Recipe {
     private String image;
 
     @Column
-    private UUID listId;
+    private UUID stepId;
+
+    @Column
+    private String metka;
 }

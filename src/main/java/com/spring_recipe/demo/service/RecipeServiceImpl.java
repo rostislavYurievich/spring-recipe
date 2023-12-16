@@ -10,7 +10,6 @@ import com.spring_recipe.demo.service.interfaces.RecipeService;
 import com.spring_recipe.demo.util.RecipeMappingUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +33,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public RecipeDto getRecipeById(String id) throws RecipeNotFoundException {
+        return recipeRepository.findById(UUID.fromString(id)).stream()
+                .map(RecipeMappingUtil::mapToRecipeDto)
+                .findFirst()
+                .orElseThrow(() -> new RecipeNotFoundException(id));
+    }
+
+    @Override
     @Transactional
     public RecipeDto createRecipe(CreateRecipeRequest request) throws RecipeAlreadyExistException {
         if (!recipeRepository.existsByName(request.getName())) {
@@ -41,8 +48,6 @@ public class RecipeServiceImpl implements RecipeService {
         }
         throw new RecipeAlreadyExistException(request.getName());
     }
-
-
 
     @Override
     public List<Recipe> getAllRecipes() {
@@ -56,7 +61,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override   
-    public void deleteRecipe(String recipeId) {
-        recipeRepository.deleteById(UUID.fromString(recipeId));
+    public void deleteRecipe(String id) {
+        recipeRepository.deleteById(UUID.fromString(id));
+    }
+    @Override
+    public RecipeDto getRecipeByMetka(String metka) throws RecipeNotFoundException {
+        return recipeRepository.findByMetka(metka).stream()
+                .map(RecipeMappingUtil::mapToRecipeDto)
+                .findFirst()
+                .orElseThrow(() -> new RecipeNotFoundException(metka));
     }
 }

@@ -13,8 +13,8 @@ public class StepMappingUtil {
     public static StepDto mapToStepDto(Step step) {
         return StepDto.builder()
                 .description(step.getDescription())
-                .dependencyRecipeId(step.getDependencyRecipeId())
-                .image(step.getImage())
+                .recipeId(step.getRecipeId())
+                .nextId(step.getNextId())
                 .requestTime(LocalDateTime.now())
                 .build();
     }
@@ -22,8 +22,8 @@ public class StepMappingUtil {
     public static Step mapToStepFromRequest(CreateStepRequest request) {
         return Step.builder()
                 .description(request.getDescription())
-                .dependencyRecipeId(request.getDependencyRecipeId())
-                .image(request.getImage())
+                .recipeId(request.getRecipeId())
+                .nextId(request.getNextId())
                 .build();
     }
 }

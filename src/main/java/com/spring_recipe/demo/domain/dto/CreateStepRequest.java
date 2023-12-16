@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateStepRequest {
     private String description;
-    private UUID dependencyRecipeId;
-    private String image;
+    private UUID recipeId;
+    private UUID nextId;
 }

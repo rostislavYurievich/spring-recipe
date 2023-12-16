@@ -14,5 +14,7 @@ public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
     List<Recipe> getAll();
     Optional<Recipe> findByName(String name);
 
-    Boolean existsByName(String name);
+    Optional<Recipe> findByMetka(String metka);
+
+    boolean existsByName(String name);
 }

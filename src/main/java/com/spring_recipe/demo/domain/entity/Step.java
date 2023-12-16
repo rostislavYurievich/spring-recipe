@@ -23,8 +23,9 @@ public class Step {
     private String description;
 
     @Column
-    private UUID dependencyRecipeId;
+    private UUID recipeId;
 
     @Column
-    private String image;
+    private UUID nextId;
+
 }
