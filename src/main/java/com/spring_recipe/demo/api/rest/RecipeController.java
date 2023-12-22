@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.spring_recipe.demo.domain.dto.CreateRecipeRequest;
 import com.spring_recipe.demo.domain.entity.Recipe;
 import com.spring_recipe.demo.domain.dto.RecipeDto;
+import com.spring_recipe.demo.domain.dto.RecipeDtoOut;
 import com.spring_recipe.demo.domain.exceptions.RecipeAlreadyExistException;
 import com.spring_recipe.demo.domain.exceptions.RecipeNotFoundException;
+import com.spring_recipe.demo.service.StepServiceOutImpl;
 import com.spring_recipe.demo.service.UserDetailsServiceImpl;
 import com.spring_recipe.demo.service.interfaces.RecipeService;
 import lombok.RequiredArgsConstructor;
@@ -33,6 +35,7 @@ import static java.lang.String.format;
 public class RecipeController {
 
     private final RecipeService RecipeService;
+    private final StepServiceOutImpl stepServiceOut;
     private final UserDetailsServiceImpl UserDetailsService;
 
     @GetMapping("/Recipes/all")
@@ -47,6 +50,13 @@ public class RecipeController {
         return ResponseEntity.ok(RecipeService.getRecipeByName(name));
     }
 
+    @GetMapping("/Recipes/find/{name}/fancy")
+    @PreAuthorize("hasAuthority('read')")
+    public ResponseEntity<RecipeDtoOut> getRecipeByNameFancy(@PathVariable String name) throws RecipeNotFoundException {
+        Recipe r = RecipeService.loadRecipeByName(name);
+        return ResponseEntity.ok(stepServiceOut.mapToRecipeDtoOut(r));
+    }
+
     @PostMapping("/Recipes")
     @PreAuthorize("hasAuthority('modification')")
     public ResponseEntity<RecipeDto> createRecipe(@RequestBody CreateRecipeRequest Recipe) throws RecipeAlreadyExistException {
@@ -59,7 +69,7 @@ public class RecipeController {
     public ResponseEntity<RecipeDto> updateRecipe(Authentication auth, @RequestBody Recipe Recipe) throws RecipeNotFoundException{
         UserDetails udt1 = (UserDetails) auth.getPrincipal();
         int id = (RecipeService.getRecipeByName(Recipe.getName())).getUserId();
-        UserDetails udt2 = UserDetailsService.findById(id);
+        UserDetails udt2 = (UserDetails) UserDetailsService.findById(id);
         if (udt1.equals(udt2)){
             return ResponseEntity.ok(RecipeService.updateRecipe(Recipe));
         }
@@ -72,7 +82,7 @@ public class RecipeController {
     public ResponseEntity deleteRecipe(Authentication auth, @PathVariable String id) throws RecipeNotFoundException{
         UserDetails udt1 = (UserDetails) auth.getPrincipal();
         int user_id = RecipeService.getRecipeById(id).getUserId();
-        UserDetails udt2 = UserDetailsService.findById(user_id);
+        UserDetails udt2 = (UserDetails) UserDetailsService.findById(user_id);
         if (udt1.equals(udt2)){
             RecipeService.deleteRecipe(id);
         return ResponseEntity.ok()
