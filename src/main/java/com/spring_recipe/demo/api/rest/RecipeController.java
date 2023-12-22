@@ -1,6 +1,5 @@
 package com.spring_recipe.demo.api.rest;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.spring_recipe.demo.domain.dto.CreateRecipeRequest;
 import com.spring_recipe.demo.domain.entity.Recipe;
 import com.spring_recipe.demo.domain.dto.RecipeDto;
@@ -11,17 +10,12 @@ import com.spring_recipe.demo.service.StepServiceOutImpl;
 import com.spring_recipe.demo.service.UserDetailsServiceImpl;
 import com.spring_recipe.demo.service.interfaces.RecipeService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -30,11 +24,8 @@ import java.util.List;
 
 import static java.lang.String.format;
 
-import java.security.Principal;
-
 @RestController
 @RequiredArgsConstructor
-@Slf4j
 public class RecipeController {
 
     private final RecipeService RecipeService;

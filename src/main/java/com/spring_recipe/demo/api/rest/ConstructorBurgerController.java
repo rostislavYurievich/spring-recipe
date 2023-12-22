@@ -35,6 +35,7 @@ public class ConstructorBurgerController {
         Step step = Step.builder()
                 .description("Положить сверху булочку")
                 .recipeId(recipe.getId())
+                .nextId(null)
                 .build();
         stepService.createStep(step);
 
