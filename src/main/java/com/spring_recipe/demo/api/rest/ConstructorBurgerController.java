@@ -15,6 +15,7 @@ import com.spring_recipe.demo.domain.entity.Recipe;
 import com.spring_recipe.demo.domain.entity.Step;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,7 +36,6 @@ public class ConstructorBurgerController {
         Step step = Step.builder()
                 .description("Положить сверху булочку")
                 .recipeId(recipe.getId())
-                .nextId(null)
                 .build();
         stepService.createStep(step);
 
