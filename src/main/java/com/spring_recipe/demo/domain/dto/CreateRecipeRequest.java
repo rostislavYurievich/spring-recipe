@@ -16,4 +16,5 @@ public class CreateRecipeRequest {
     private String description;
     private String image;
     private UUID stepId;
+    private String metka;
 }

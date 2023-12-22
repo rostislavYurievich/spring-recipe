@@ -64,7 +64,7 @@ public class RecipeController {
     public ResponseEntity<RecipeDto> updateRecipe(Authentication auth, @RequestBody Recipe Recipe) throws RecipeNotFoundException{
         UserDetails udt1 = (UserDetails) auth.getPrincipal();
         int id = (RecipeService.getRecipeByName(Recipe.getName())).getUserId();
-        UserDetails udt2 = UserDetailsService.findById(id);
+        UserDetails udt2 =(UserDetails) UserDetailsService.findById(id);
         if (udt1.equals(udt2)){
             return ResponseEntity.ok(RecipeService.updateRecipe(Recipe));
         }
@@ -77,7 +77,7 @@ public class RecipeController {
     public ResponseEntity deleteRecipe(Authentication auth, @PathVariable String id) throws RecipeNotFoundException{
         UserDetails udt1 = (UserDetails) auth.getPrincipal();
         int user_id = RecipeService.getRecipeById(id).getUserId();
-        UserDetails udt2 = UserDetailsService.findById(user_id);
+        UserDetails udt2 =(UserDetails) UserDetailsService.findById(user_id);
         if (udt1.equals(udt2)){
             RecipeService.deleteRecipe(id);
         return ResponseEntity.ok()

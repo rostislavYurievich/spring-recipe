@@ -45,7 +45,7 @@ public class StepController {
         UserDetails udt1 = (UserDetails) auth.getPrincipal();
         String recipe_id = stepService.getStepById(Step.getId().toString()).getRecipeId().toString();
         int user_id = RecipeService.getRecipeById(recipe_id).getUserId();
-        UserDetails udt2 = UserDetailsService.findById(user_id);
+        UserDetails udt2 =(UserDetails) UserDetailsService.findById(user_id);
         if (udt1.equals(udt2)){
             return ResponseEntity.ok(stepService.updateStep(Step));
         }
@@ -58,7 +58,7 @@ public class StepController {
         UserDetails udt1 = (UserDetails) auth.getPrincipal();
         String recipe_id = stepService.getStepById(id).getRecipeId().toString();
         int user_id = RecipeService.getRecipeById(recipe_id).getUserId();
-        UserDetails udt2 = UserDetailsService.findById(user_id);
+        UserDetails udt2 = (UserDetails) UserDetailsService.findById(user_id);
         if (udt1.equals(udt2)){
             stepService.deleteStep(id);
             return ResponseEntity.ok()
