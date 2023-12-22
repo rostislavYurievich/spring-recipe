@@ -13,6 +13,8 @@ public interface StepService {
     StepDto getStepById(String StepId) throws RecipeNotFoundException;
 
     StepDto createStep(CreateStepRequest Step);
+    
+    StepDto createStep(Step step);
 
     StepDto updateStep(Step Step);
 

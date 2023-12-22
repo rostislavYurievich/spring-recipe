@@ -41,10 +41,27 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    public Recipe loadRecipeByName(String name) throws RecipeNotFoundException {
+        return recipeRepository.findByName(name).stream()
+                .findFirst()
+                .orElseThrow(() -> new RecipeNotFoundException(name));
+    }
+
+
+    @Override
     @Transactional
     public RecipeDto createRecipe(CreateRecipeRequest request) throws RecipeAlreadyExistException {
         if (!recipeRepository.existsByName(request.getName())) {
             return mapToRecipeDto(recipeRepository.save(mapToRecipeFromRequest(request)));
+        }
+        throw new RecipeAlreadyExistException(request.getName());
+    }
+
+    @Override
+    @Transactional
+    public RecipeDto createRecipe(Recipe request) throws RecipeAlreadyExistException {
+        if (!recipeRepository.existsByName(request.getName())) {
+            return mapToRecipeDto(recipeRepository.save(request));
         }
         throw new RecipeAlreadyExistException(request.getName());
     }
