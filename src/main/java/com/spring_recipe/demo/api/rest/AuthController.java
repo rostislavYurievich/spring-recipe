@@ -24,7 +24,7 @@ public class AuthController {
         return "success";
     }
 
-    @PostMapping("/success")
+    /*@PostMapping("/success")
     public String verifyCaptcha(HttpServletRequest request, @RequestParam("captcha") String captcha) {
         String captchaSession = (String) request.getSession().getAttribute("captcha");
         if (captcha.equals(captchaSession)) {
@@ -32,6 +32,6 @@ public class AuthController {
         } else {
             return "captcha-failure";
         }
-    }
+    } */
 
 }
