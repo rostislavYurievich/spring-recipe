@@ -15,7 +15,6 @@ import com.spring_recipe.demo.domain.entity.Recipe;
 import com.spring_recipe.demo.domain.entity.Step;
 
 import java.util.Arrays;
-import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
