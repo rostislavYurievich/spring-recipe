@@ -33,7 +33,4 @@ public class Recipe {
 
     @Column
     private UUID stepId;
-
-    @Column
-    private String metka;
 }

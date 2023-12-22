@@ -1,6 +1,7 @@
 package com.spring_recipe.demo.domain.dto;
 
-import java.util.UUID;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,10 +11,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateRecipeRequest {
+
+public class RecipeDtoOut  {
     private String name;
     private int userId;
     private String description;
     private String image;
-    private UUID stepId;
+    private String[] steps ;
+    private LocalDateTime requestTime;
+    private String metka;
+
 }

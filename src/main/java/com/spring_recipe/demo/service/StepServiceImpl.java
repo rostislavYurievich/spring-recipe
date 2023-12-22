@@ -3,17 +3,14 @@ package com.spring_recipe.demo.service;
 import com.spring_recipe.demo.domain.dto.CreateStepRequest;
 import com.spring_recipe.demo.domain.dto.StepDto;
 import com.spring_recipe.demo.domain.entity.Step;
-import com.spring_recipe.demo.domain.exceptions.RecipeAlreadyExistException;
 import com.spring_recipe.demo.domain.exceptions.RecipeNotFoundException;
 import com.spring_recipe.demo.repository.StepRepository;
 import com.spring_recipe.demo.service.interfaces.StepService;
 import com.spring_recipe.demo.util.StepMappingUtil;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 import static com.spring_recipe.demo.util.StepMappingUtil.mapToStepDto;
@@ -41,11 +38,17 @@ public class StepServiceImpl implements StepService {
 
     @Override
     @Transactional
+    public StepDto createStep(Step step) {
+        return mapToStepDto(repository.save(step));
+    }
+
+    @Override
+    @Transactional
     public StepDto updateStep(Step step) {
         return mapToStepDto(repository.save(step));
     }
 
-    @Override   
+    @Override
     public void deleteStep(String id) {
         repository.deleteById(UUID.fromString(id));
     }

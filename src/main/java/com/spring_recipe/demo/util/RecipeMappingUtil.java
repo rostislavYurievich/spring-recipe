@@ -18,7 +18,6 @@ public class RecipeMappingUtil {
                 .userId(recipe.getUserId())
                 .stepId(recipe.getStepId())
                 .requestTime(LocalDateTime.now())
-                .metka(recipe.getMetka())
                 .build();
     }
 
@@ -29,7 +28,6 @@ public class RecipeMappingUtil {
                 .image(request.getImage())
                 .userId(request.getUserId())
                 .stepId(request.getStepId())
-                .metka(request.getMetka())
                 .build();
     }
 }

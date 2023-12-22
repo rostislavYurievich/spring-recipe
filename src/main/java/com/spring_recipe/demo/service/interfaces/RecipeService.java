@@ -14,15 +14,17 @@ import org.springframework.stereotype.Service;
 public interface RecipeService {
     RecipeDto getRecipeByName(String name) throws RecipeNotFoundException;
 
+    Recipe loadRecipeByName(String name) throws RecipeNotFoundException;
+
     RecipeDto getRecipeById(String id) throws RecipeNotFoundException;
 
     RecipeDto createRecipe(CreateRecipeRequest Recipe) throws RecipeAlreadyExistException;
+
+    RecipeDto createRecipe(Recipe request) throws RecipeAlreadyExistException;
 
     List<Recipe> getAllRecipes();
 
     RecipeDto updateRecipe(Recipe Recipe);
 
     void deleteRecipe(String id);
-
-    RecipeDto getRecipeByMetka(String metka) throws RecipeNotFoundException;
 }

@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 @Getter
 @AllArgsConstructor
 public enum Permission implements GrantedAuthority {
-
     READ("read"),
     MODIFY("modification"),
     ADMIN("admin");
@@ -15,5 +14,5 @@ public enum Permission implements GrantedAuthority {
     private final String permission;
     public String getAuthority() {
         return permission;
-    }
+}
 }

@@ -19,5 +19,4 @@ public class RecipeDto {
     private String image;
     private UUID stepId;
     private LocalDateTime requestTime;
-    private String metka;
 }
