@@ -1,4 +1,6 @@
 package com.spring_recipe.demo.api.rest;
+
+
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import jakarta.servlet.http.HttpServletRequest;
