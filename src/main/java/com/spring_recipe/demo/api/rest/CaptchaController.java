@@ -14,23 +14,39 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Properties;
 
-@RestController
-@RequestMapping("/captcha")
-public class CaptchaController {
-    private final DefaultKaptcha defaultKaptcha;
-    @Autowired
-    public CaptchaController(DefaultKaptcha defaultKaptcha) {
-        this.defaultKaptcha = defaultKaptcha;
-    }
-    @GetMapping("/")
-    public void getCaptcha(HttpServletResponse response,HttpServletRequest request) throws IOException {
 
-        String text = defaultKaptcha.createText();
-        BufferedImage image = defaultKaptcha.createImage(text);
-        request.getSession().setAttribute("captcha", text);
-        response.setContentType("image/jpeg");
-        OutputStream outputStream = response.getOutputStream();
-        ImageIO.write(image, "jpg", outputStream);
-        outputStream.close();
-    }
+    @RestController
+    @RequestMapping("/captcha")
+    public class CaptchaController {
+
+        private final DefaultKaptcha defaultKaptcha;
+
+        @Autowired
+        public CaptchaController(DefaultKaptcha defaultKaptcha) {
+            this.defaultKaptcha = defaultKaptcha;
+        }
+
+        @GetMapping("/")
+        public void getCaptcha(HttpServletResponse response,HttpServletRequest request) throws IOException {
+
+            String text = defaultKaptcha.createText();
+            BufferedImage image = defaultKaptcha.createImage(text);
+            request.getSession().setAttribute("captcha", text);
+            response.setContentType("image/jpeg");
+            OutputStream outputStream = response.getOutputStream();
+            ImageIO.write(image, "jpg", outputStream);
+            outputStream.close();
+        }
+
+
+        @PostMapping("/verify-captcha")
+        public String verifyCaptcha(HttpServletRequest request, @RequestParam("captcha") String captcha) {
+            String captchaSession = (String) request.getSession().getAttribute("captcha");
+            if (captcha.equals(captchaSession)) {
+                return "captcha-success";
+            } else {
+                return "captcha-failure";
+            }
+        }
+
 }

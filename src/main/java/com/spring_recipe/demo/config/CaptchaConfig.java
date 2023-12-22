@@ -15,17 +15,17 @@ public class CaptchaConfig {
     public DefaultKaptcha getDefaultKaptcha() {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
         Properties properties = new Properties();
-        properties.setProperty("kaptcha.border", "yes");
-        properties.setProperty("kaptcha.border.color", "blue");
-        properties.setProperty("kaptcha.textproducer.font.color", "blue");
-        properties.setProperty("kaptcha.image.width", "500");
-        properties.setProperty("kaptcha.image.height", "200");
-        properties.setProperty("kaptcha.textproducer.font.size", "80");
+        properties.setProperty("kaptcha.textproducer.font.color", "black");
+        properties.setProperty("kaptcha.image.width", "150");
+        properties.setProperty("kaptcha.image.height", "100");
+        properties.setProperty("kaptcha.textproducer.font.size", "50");
+        properties.setProperty("kaptcha.session.key", "code");
         properties.setProperty("kaptcha.textproducer.char.length", "4");
-        properties.setProperty("kaptcha.textproducer.font.names", "hehehe123123123231123");
+        properties.setProperty("kaptcha.textproducer.font.names", "text");
         Config config = new Config(properties);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
     }
+
 
 }
