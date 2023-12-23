@@ -16,6 +16,6 @@ public class CreateBurgerRequest {
     private String description;
     private String image;
     private String[] ingredients;
-
+    private String metka;
 
 }

@@ -32,6 +32,7 @@ public class ConstructorBurgerController {
                 .description(burger.getDescription())
                 .image(burger.getImage())
                 .userId(burger.getUserId())
+                .metka(burger.getMetka())
                 .build();
         Step step = Step.builder()
                 .description("Положить сверху булочку")

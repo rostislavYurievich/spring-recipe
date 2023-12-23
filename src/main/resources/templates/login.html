@@ -17,11 +17,18 @@
     </div>
     <div>
         <input type="password" name="password" placeholder="Password"/>
-
+    </div>
+    <div>
         <input type="text" name="captcha" placeholder="captcha"/>
     </div>
-    <img style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 100ms;" src="http://localhost:8080/captcha/">
-    <input type="submit" value="Log in" />
+    <div>
+        <input type="submit" value="Log in" />
+    </div>
+    <div>
+        <img style="float: left; display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);transition: background-color 100ms;" src="http://localhost:8080/captcha/">
+    </div>
+    
+    
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 </body>

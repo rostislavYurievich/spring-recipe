@@ -41,6 +41,7 @@ public class StepServiceOutImpl {
                 .userId(recipe.getUserId())
                 .steps(array)
                 .requestTime(LocalDateTime.now())
+                .metka(recipe.getMetka())
                 .build();
     }
 
