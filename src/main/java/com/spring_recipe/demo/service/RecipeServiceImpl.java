@@ -31,7 +31,13 @@ public class RecipeServiceImpl implements RecipeService {
                 .findFirst()
                 .orElseThrow(() -> new RecipeNotFoundException(name));
     }
-
+    @Override
+    public RecipeDto getRecipeByMetka(String metka) throws RecipeNotFoundException {
+        return recipeRepository.findByMetka(metka).stream()
+                .map(RecipeMappingUtil::mapToRecipeDto)
+                .findFirst()
+                .orElseThrow(() -> new RecipeNotFoundException(metka));
+    }
     @Override
     public RecipeDto getRecipeById(String id) throws RecipeNotFoundException {
         return recipeRepository.findById(UUID.fromString(id)).stream()

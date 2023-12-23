@@ -21,7 +21,7 @@ public interface RecipeService {
     RecipeDto createRecipe(CreateRecipeRequest Recipe) throws RecipeAlreadyExistException;
 
     RecipeDto createRecipe(Recipe request) throws RecipeAlreadyExistException;
-
+    RecipeDto getRecipeByMetka(String metka) throws RecipeNotFoundException;
     List<Recipe> getAllRecipes();
 
     RecipeDto updateRecipe(Recipe Recipe);

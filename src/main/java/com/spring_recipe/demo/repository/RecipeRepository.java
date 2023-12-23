@@ -10,9 +10,10 @@ import java.util.UUID;
 
 public interface RecipeRepository extends JpaRepository<Recipe, UUID> {
 
+
     @Query(value = "SELECT p FROM Recipe p")
     List<Recipe> getAll();
     Optional<Recipe> findByName(String name);
-
+    Optional<Recipe> findByMetka(String metka);
     boolean existsByName(String name);
 }

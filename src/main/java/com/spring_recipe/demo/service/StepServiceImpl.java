@@ -35,14 +35,20 @@ public class StepServiceImpl implements StepService {
     @Transactional
     public StepDto createStep(CreateStepRequest request) throws RecipeAlreadyExistException {
         Step step = mapToStepFromRequest(request);
+        if (!repository.existsById(step.getId())) {
             return mapToStepDto(repository.save(step));
+        }
+        throw new RecipeAlreadyExistException(step.getId().toString());
     }
     
 
     @Override
     @Transactional
     public StepDto createStep(Step step) throws RecipeAlreadyExistException{
-        return mapToStepDto(repository.save(step));
+        if (!repository.existsById(step.getId())) {
+            return mapToStepDto(repository.save(step));
+        }
+        throw new RecipeAlreadyExistException(step.getId().toString());
     }
 
     @Override
