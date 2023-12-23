@@ -59,4 +59,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         newUser.setId(id);
         return mapToAppUserDto(repository.save(newUser));
     }
+
+    
 }

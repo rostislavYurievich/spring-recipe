@@ -76,5 +76,6 @@ public class AdminController {
     public ResponseEntity updateUser(@PathVariable int id, @RequestBody CreateAppUserRequest user) throws RecipeAlreadyExistException, RecipeNotFoundException {
         return ResponseEntity.ok(userDetailsService.updateUser(user, id));
     }
+
     
 }
